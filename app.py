@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-data, faction = functions.get_faction('8336')
+#data, faction = functions.get_faction('8336')
 
 #MQ: 8336
 #NS: 9533
