@@ -1,17 +1,18 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, current_app
 import functions
-
-#import os
-
 from dotenv import load_dotenv
-
 load_dotenv()
-
-#data, faction = functions.get_faction('8336')
 
 #MQ: 8336
 #NS: 9533
 
+def get_data(input_value):
+    data = getattr(current_app, input_value, None)
+    if data is None:
+        data, faction = functions.get_faction(input_value)
+        setattr(current_app, input_value, data)
+    faction = 'test'
+    return data, faction
 
 app = Flask(__name__)
 
@@ -19,15 +20,19 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         input_value = request.form['input_value']
-        # process the input_value here
+        input_value2 = request.form['input_value2']
+        input_value3 = request.form['input_value3']
+        input_value4 = request.form['input_value4']
+        input_value5 = request.form['input_value5']
+        print(input_value, input_value2, input_value3, input_value4, input_value5)
 
-        print(input_value)
+
+        #data, faction = get_data(input_value)
         data, faction = functions.get_faction(input_value)
+
         return render_template("index.html", data=data, faction=faction)
-    #data, faction = functions.get_faction('8336')
     return render_template("frontpage.html")
 
 if "__name__" == "__main__":
     app.run(debug=True)
-
 
