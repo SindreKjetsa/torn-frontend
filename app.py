@@ -1,13 +1,11 @@
 from flask import Flask, request, render_template
 import functions
 
-import os
+#import os
 
 from dotenv import load_dotenv
 
 load_dotenv()
-
-#header = 'Faction name'
 
 data, faction = functions.get_faction('8336')
 
@@ -25,11 +23,11 @@ def index():
 
         print(input_value)
         data, faction = functions.get_faction(input_value)
-        return render_template("index.html", data=data)#, faction=faction)
-    data, faction = functions.get_faction('8336')
-    return render_template("index.html", data=data, faction=faction)
+        return render_template("index.html", data=data, faction=faction)
+    #data, faction = functions.get_faction('8336')
+    return render_template("frontpage.html")
 
-#if "__name__" == "__main__":
-#    app.run(debug=True)
+if "__name__" == "__main__":
+    app.run(debug=True)
 
 
