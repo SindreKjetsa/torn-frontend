@@ -18,8 +18,6 @@ data, faction = functions.get_faction('8336')
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
-
-
 def index():
     if request.method == 'POST':
         input_value = request.form['input_value']
@@ -29,9 +27,9 @@ def index():
         data, faction = functions.get_faction(input_value)
         return render_template("index.html", data=data)#, faction=faction)
     data, faction = functions.get_faction('8336')
-    #return render_template("index.html", data=data, faction=faction)
+    return render_template("index.html", data=data, faction=faction)
 
-if "__name__" == "__main__":
-    app.run(debug=True)
+#if "__name__" == "__main__":
+#    app.run(debug=True)
 
 
